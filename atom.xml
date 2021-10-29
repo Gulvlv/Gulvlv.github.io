@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-10-22T03:46:28.649Z</updated>
+  <updated>2021-10-22T03:48:53.948Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于while和for循环语句</title>
+    <link href="http://example.com/2021/10/22/%E5%85%B3%E4%BA%8Ewhile%E5%92%8Cfor%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/"/>
+    <id>http://example.com/2021/10/22/%E5%85%B3%E4%BA%8Ewhile%E5%92%8Cfor%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/</id>
+    <published>2021-10-22T03:48:53.000Z</published>
+    <updated>2021-10-22T03:48:53.948Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>关于switch和if else</title>
