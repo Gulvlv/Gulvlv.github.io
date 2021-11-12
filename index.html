@@ -189,7 +189,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 23:56:18" itemprop="dateModified" datetime="2021-11-09T23:56:18+08:00">2021-11-09</time>
+                <time title="修改时间：2021-11-12 22:18:50" itemprop="dateModified" datetime="2021-11-12T22:18:50+08:00">2021-11-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -212,8 +212,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h1><p>经过了几周的学习，现在在c语言中引入了数组的概念。<br>在一些比较繁琐，步骤多的情境下可以使用数组来解决代码过长，难以编写的情况。<br>例如 int a[10]<br>这个句子中就是列出了名字为a的一维数组，里面包含10个数组元素，且都是int类型的，我们可以理解为一共有十个小组，它们都叫a，各自能存放一些字符等。是用a[1],a[2]等等来区分它们。<br>句子为:   类型标识符   数组名[整型常量表达式]<br>将这些数组赋值<br>例如： int a[10]={1,2,3,4,5,6,7,8,9,10};<br>这个句子中理解为10个组，这10个数字有序填入数组中。<br>也可以部分赋值，而未被赋值的数组自动带入0。<br>也可以全都赋值为一个数<br>如 int a[10]={1}<br>这个语句中10个数组的值都为1。<br>而当你赋予的值多于这个数组的总量，系统就会报错。<br>关于随机赋值<br>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#include &lt;time.h&gt;<br>int main()<br>{<br>    int i;<br>    int a[10],b[10],c[10];<br>    //以下分别产生10个0~100的随机数存放于数组a和b中<br>    srand((int)time(0));<br>    for(i=0;i&lt;10;i++){<br>        a[i]=(int)(100.0<em>rand()/RAND_MAX);<br>        b[i]=(int)(100.0</em>rand()/RAND_MAX);<br>    }<br>    printf(“the array of a:\n”);<br>    for(i=0;i&lt;10;i++) //显示数组a的元素<br>       printf(“%5d”,a[i]);<br>    for(i=0;i&lt;10;i++) //显示数组b的元素<br>       printf(“%5d”,b[i]);<br>    for(i=0;i&lt;10;i++) //对应的元素相加<br>       c[i]=a[i]+b[i];<br>    printf(“\nthe array of c:\n”) ;<br>    for(i=0;i&lt;10;i++) //显示数组c的元素<br>       printf(“%5d”,c[i]);<br>    return 0;</p>
-<p>}<br>关于随机赋值中所使用了归一化的办法以及一些还未接触的函数<br>归一化理解：将rand()/RAND_MAX理解为：<br>“0 到 rand中的无穷大 / rand中的无穷大 = 0到1“<br>然后再乘以100就会变成0~100的形式<br>而srand() rand()是伪随机函数。<br>这只是关于一维数组的一小部分，后面还会有关于冒泡排序的问题，以及一维数组的拓展，二维数组。</p>
+          <h1 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h1><p>经过了几周的学习，现在在c语言中引入了数组的概念。<br>在一些比较繁琐，步骤多的情境下可以使用数组来解决代码过长，难以编写的情况。<br>例如 int a[10]<br>这个句子中就是列出了名字为a的一维数组，里面包含10个数组元素，且都是int类型的，我们可以理解为一共有十个小组，它们都叫a，各自能存放一些字符等。是用a[1],a[2]等等来区分它们。<br>句子为:   类型标识符   数组名[整型常量表达式]<br>将这些数组赋值<br>例如： int a[10]={1,2,3,4,5,6,7,8,9,10};<br>这个句子中理解为10个组，这10个数字有序填入数组中。<br>也可以部分赋值，而未被赋值的数组自动带入0。<br>也可以全都赋值为一个数<br>如 int a[10]={1}<br>这个语句中10个数组的值都为1。<br>而当你赋予的值多于这个数组的总量，系统就会报错。<br>关于随机赋值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;time.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int i;</span><br><span class="line">	int a[10],b[10],c[10];</span><br><span class="line">	//以下分别产生10个0~100的随机数存放于数组a和b中</span><br><span class="line">	srand((int)time(0));</span><br><span class="line">	for(i=0;i&lt;10;i++)&#123;</span><br><span class="line">		a[i]=(int)(100.0*rand()/RAND_MAX);</span><br><span class="line">		b[i]=(int)(100.0*rand()/RAND_MAX);</span><br><span class="line">	&#125; </span><br><span class="line">	printf(&quot;the array of a:\n&quot;);</span><br><span class="line">	for(i=0;i&lt;10;i++) //显示数组a的元素</span><br><span class="line">	   printf(&quot;%5d&quot;,a[i]); </span><br><span class="line">	for(i=0;i&lt;10;i++) //显示数组b的元素</span><br><span class="line">	   printf(&quot;%5d&quot;,b[i]);</span><br><span class="line">	for(i=0;i&lt;10;i++) //对应的元素相加</span><br><span class="line">	   c[i]=a[i]+b[i];</span><br><span class="line">	printf(&quot;\nthe array of c:\n&quot;) ;</span><br><span class="line">	for(i=0;i&lt;10;i++) //显示数组c的元素</span><br><span class="line">	   printf(&quot;%5d&quot;,c[i]);</span><br><span class="line">	return 0;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关于随机赋值中所使用了归一化的办法以及一些还未接触的函数<br>归一化理解：将rand()/RAND_MAX理解为：<br>“0 到 rand中的无穷大 / rand中的无穷大 = 0到1“<br>然后再乘以100就会变成0~100的形式<br>而srand() rand()是伪随机函数。<br>这只是关于一维数组的一小部分，后面还会有关于冒泡排序的问题，以及一维数组的拓展，二维数组。</li>
+</ul>
 
       
     </div>
@@ -337,7 +341,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-11 22:53:43" itemprop="dateModified" datetime="2021-11-11T22:53:43+08:00">2021-11-11</time>
+                <time title="修改时间：2021-11-12 22:21:05" itemprop="dateModified" datetime="2021-11-12T22:21:05+08:00">2021-11-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -360,21 +364,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="关于while"><a href="#关于while" class="headerlink" title="关于while"></a>关于while</h1><p>while，中文叫 当…时，其实就是当条件满足时就执行代码，一旦不满足了就不执行了。<br>while (条件) { 满足条件就执行 }<br>关于for<br>for作为一种较为常用的循环语句，经常出现于题目中。相比于while，可能更难于理解。<br>具体操作可以像这样：<br>for(i=1;i&lt;10;i++){<br>     要执行的语句<br>}<br>这个控制语句中，i=1是循环的开始，我们给他定义的一个量。<br>i&lt;10是循环的最后要满足的条件，一旦不符合就结束循环。<br>i++是循环一次后进行步骤，就好比i=1带入要执行的语句中得到了个结果，在第二次循环中它变成了i++,在第二次循环开始前i=2。<br>可能这个循环语句大家一开始接触时会觉得十分的抽象，但是只要把它分为三个部分：开始时，循环最后满足的条件，一次循环后所要执行的。这三个部分会更有利于我们去理解这个程序。</p>
+          <h1 id="关于while"><a href="#关于while" class="headerlink" title="关于while"></a>关于while</h1><p>while，中文叫 当…时，其实就是当条件满足时就执行代码，一旦不满足了就不执行了。<br>while (条件) { 满足条件就执行 }<br>关于for<br>for作为一种较为常用的循环语句，经常出现于题目中。相比于while，可能更难于理解。<br>具体操作可以像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(i=1;i&lt;10;i++)&#123;</span><br><span class="line">     要执行的语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个控制语句中，i=1是循环的开始，我们给他定义的一个量。<br>i&lt;10是循环的最后要满足的条件，一旦不符合就结束循环。<br>i++是循环一次后进行步骤，就好比i=1带入要执行的语句中得到了个结果，在第二次循环中它变成了i++,在第二次循环开始前i=2。<br>可能这个循环语句大家一开始接触时会觉得十分的抽象，但是只要把它分为三个部分：开始时，循环最后满足的条件，一次循环后所要执行的。这三个部分会更有利于我们去理解这个程序。</p>
 <h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><ul>
-<li>作业里面的求级数之和：e^x的泰勒展开式。<br>#include &lt;stdio.h&gt;<br>#include &lt;math.h&gt;<br>int main()<br>{<br>  double sum=1,p,i,e=1,x;<br>  int n;<br>  printf(“请分别输入n,x：\n”);<br>  scanf(“%d %lf”,&amp;n,&amp;x);<br>  if(n&lt;0){<pre><code>  printf(&quot;错误&quot;);
-  return 0;
-</code></pre>
-  }<br>  else{<pre><code>  for(p=1;p&lt;=n;p++)&#123;
-      i=pow(x,p);
-      e=e*p;
-      sum+=(i/e);
-      &#125;
-      printf(&quot;e^%.1lf=%.1lf&quot;,x,sum);
-  &#125;
-</code></pre>
-  return 0;<br>}<br>在这个循环中就可以明显的看出p=1是开始的值，p&lt;=n是结束时需要满足的条件，p++是这个循环过程中所需要执行的语句。<br>目前阶段而言，for循环较为常用而且只要理解了它这三个部分，for循环就会变得很简单。<br>当然这还只是我个人的见解。</li>
+<li>作业里面的求级数之和：e^x的泰勒展开式。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	double sum=1,p,i,e=1,x;</span><br><span class="line">	int n;</span><br><span class="line">	printf(&quot;请分别输入n,x：\n&quot;);</span><br><span class="line">	scanf(&quot;%d %lf&quot;,&amp;n,&amp;x);</span><br><span class="line">	if(n&lt;0)&#123;</span><br><span class="line">		printf(&quot;错误&quot;);</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">		for(p=1;p&lt;=n;p++)&#123;</span><br><span class="line">			i=pow(x,p);</span><br><span class="line">			e=e*p;</span><br><span class="line">			sum+=(i/e);</span><br><span class="line">			&#125;</span><br><span class="line">			printf(&quot;e^%.1lf=%.1lf&quot;,x,sum);</span><br><span class="line">		&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
+<p>在这个循环中就可以明显的看出p=1是开始的值，p&lt;=n是结束时需要满足的条件，p++是这个循环过程中所需要执行的语句。<br>目前阶段而言，for循环较为常用而且只要理解了它这三个部分，for循环就会变得很简单。<br>当然这还只是我个人的见解。</p>
 
       
     </div>
@@ -425,7 +422,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-11 22:58:56" itemprop="dateModified" datetime="2021-11-11T22:58:56+08:00">2021-11-11</time>
+                <time title="修改时间：2021-11-12 22:20:38" itemprop="dateModified" datetime="2021-11-12T22:20:38+08:00">2021-11-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -448,54 +445,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="关于if-else"><a href="#关于if-else" class="headerlink" title="关于if else"></a>关于if else</h1><p>关于if型：当满足这个条件时,执行某个操作,而不满足该条件时,什么都不做.在这种情况下就可以使用这种结构<br>if(某个条件)<br>    语句;<br>关于if else型：当满足这个条件时,执行某个操作,当不满足这个条件时,执行另一个操作(和if型区别是如果不满足条件一个是执行另一个操作,而一个是什么都不做)<br>if(某个条件)<br>    语句1;<br>else<br>    语句2;</p>
-<h1 id="关于if-else-1"><a href="#关于if-else-1" class="headerlink" title="关于if else"></a>关于if else</h1><p>if else型：这种形式的if语句,最终只有一个出口.即当满足条件1时,执行语句1.当不满足条件1时,往下走,判断是否满足条件2,如果还是不满足,则继续往下走,一直走到else语句,说明之前的条件都不满足,最终执行语句4;<br>这个和之前两个的区别是:它存在了多种情况的分析,而之前两个仅仅只有一种情况的分析。<br>if(条件1)<br>    语句1;<br>else if(条件2)<br>    语句2;<br>else if(条件3)<br>    语句3;<br>    .<br>else<br>    语句4;<br>注意：if else if else 与if 嵌套的区别:<br>if套if,是当外面条件不满足时,里面的if不会执行<br>而if else if else,是当第一个条件不满足时,判断第二个条件<br>这段解释来自于<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42805389/article/details/102518733">CSDN博主「浮笙若有梦」的原创文章</a><br>因为书本上的解释过少，我选择copyCSDN博主的文章，较容易理解。</p>
-<h1 id="关于switch"><a href="#关于switch" class="headerlink" title="关于switch"></a>关于switch</h1><p>switch (表达式) {<br>    case 1:<br>        语句体1;break;<br>    case 2:<br>        语句体2;break;<br>    …<br>                default:<br>                                语句体n+1;break;<br>}<br>首先计算出表达式的值。其次，和case依次比较，一旦有对应的值，就会执行相应的语句，在执行的过程中，遇到break就会结束。最后，如果所有的case都和表达式的值不匹配，就会执行default语句体部分，然后程序结束掉。</p>
+          <h1 id="关于if-else"><a href="#关于if-else" class="headerlink" title="关于if else"></a>关于if else</h1><p>关于if型：当满足这个条件时,执行某个操作,而不满足该条件时,什么都不做.在这种情况下就可以使用这种结构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if(某个条件)</span><br><span class="line">	语句;</span><br></pre></td></tr></table></figure>
+<p>关于if else型：当满足这个条件时,执行某个操作,当不满足这个条件时,执行另一个操作(和if型区别是如果不满足条件一个是执行另一个操作,而一个是什么都不做)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(某个条件)</span><br><span class="line">	语句1;</span><br><span class="line">else</span><br><span class="line">	语句2;</span><br></pre></td></tr></table></figure>
+
+<h1 id="关于if-else-1"><a href="#关于if-else-1" class="headerlink" title="关于if else"></a>关于if else</h1><p>if else型：这种形式的if语句,最终只有一个出口.即当满足条件1时,执行语句1.当不满足条件1时,往下走,判断是否满足条件2,如果还是不满足,则继续往下走,一直走到else语句,说明之前的条件都不满足,最终执行语句4;<br>这个和之前两个的区别是:它存在了多种情况的分析,而之前两个仅仅只有一种情况的分析。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if(条件1)</span><br><span class="line">	语句1;</span><br><span class="line">else if(条件2)</span><br><span class="line">	语句2;</span><br><span class="line">else if(条件3)</span><br><span class="line">	语句3;</span><br><span class="line">	.</span><br><span class="line">else</span><br><span class="line">	语句4;</span><br></pre></td></tr></table></figure>
+<p>注意：if else if else 与if 嵌套的区别:<br>if套if,是当外面条件不满足时,里面的if不会执行<br>而if else if else,是当第一个条件不满足时,判断第二个条件<br>这段解释来自于<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42805389/article/details/102518733">CSDN博主「浮笙若有梦」的原创文章</a><br>因为书本上的解释过少，我选择copyCSDN博主的文章，较容易理解。</p>
+<h1 id="关于switch"><a href="#关于switch" class="headerlink" title="关于switch"></a>关于switch</h1> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">switch (表达式) &#123;</span><br><span class="line">	case 1:</span><br><span class="line">		语句体1;break;</span><br><span class="line">	case 2:</span><br><span class="line">		语句体2;break;</span><br><span class="line">	...</span><br><span class="line">                default:</span><br><span class="line">                                语句体n+1;break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先计算出表达式的值。其次，和case依次比较，一旦有对应的值，就会执行相应的语句，在执行的过程中，遇到break就会结束。最后，如果所有的case都和表达式的值不匹配，就会执行default语句体部分，然后程序结束掉。</p>
 <h1 id="今天的编程作业"><a href="#今天的编程作业" class="headerlink" title="今天的编程作业"></a>今天的编程作业</h1><ul>
-<li>编写程序，计算并输出下列分段函数的函数值：<br>y={x<em>x+2</em>x-6 x&lt;0,x!=-3<br>  {x*x-5*x+6 0&lt;=x&lt;10,x!=2,x!=3<br>  {x*x-x-15 x=-3,x=-2,x=3,x&gt;=10<br>答案：<br>#include &lt;stdio.h&gt;<br>int main ()<br>{      <pre><code>int x,y;
-printf (&quot;请输入一个x:&quot;);
-scanf(&quot;%d&quot;,&amp;x) ;
-if(x&lt;0&amp;&amp;x!=-3)
-      printf(&quot;%d\n&quot;,y=x*x+2*x-6);
-eles if(0&lt;=x&amp;&amp;x&lt;10&amp;&amp;x!=2&amp;&amp;x!=3)
-      printf(&quot;%d\n&quot;,y=x*x-5*x+6);
-eles if(x==-3||x==2||x==3||x&gt;=10)
-      printf(&quot;%d\n&quot;,y=x*x-x-15);
-return 0;
-</code></pre>
-}</li>
+<li>编写程序，计算并输出下列分段函数的函数值：<br>y={x<em>x+2</em>x-6 x&lt;0,x!=-3<br>  {x*x-5*x+6 0&lt;=x&lt;10,x!=2,x!=3<br>  {x*x-x-15 x=-3,x=-2,x=3,x&gt;=10<br>答案：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">  int main ()</span><br><span class="line">&#123;      </span><br><span class="line">      int x,y;</span><br><span class="line">      printf (&quot;请输入一个x:&quot;);</span><br><span class="line">      scanf(&quot;%d&quot;,&amp;x) ;</span><br><span class="line">      if(x&lt;0&amp;&amp;x!=-3)</span><br><span class="line">            printf(&quot;%d\n&quot;,y=x*x+2*x-6);</span><br><span class="line">      eles if(0&lt;=x&amp;&amp;x&lt;10&amp;&amp;x!=2&amp;&amp;x!=3)</span><br><span class="line">            printf(&quot;%d\n&quot;,y=x*x-5*x+6);</span><br><span class="line">      eles if(x==-3||x==2||x==3||x&gt;=10)</span><br><span class="line">            printf(&quot;%d\n&quot;,y=x*x-x-15);</span><br><span class="line">      return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>编写程序，从键盘输入年和月，计算并输出该年的该月份共有多少天。</li>
 <li><ul>
-<li>这是我同学的做法：<br>#include &lt; stdio.h&gt;<br>int main()<br>{    int year,m;<br>  scanf(“%d %d”,&amp;year,&amp;m);<br>  if(((year%100==0&amp;&amp;year%400==0)||(year%4==0&amp;&amp;year%100!=0))&amp;&amp;m==2){<br>  printf(“29\n”);<br>}else{<pre><code>   switch (m) &#123;
-   case 1:printf(&quot;31\n&quot;);break;
-   case 2:printf(&quot;28\n&quot;);break;
-   case 3:printf(&quot;31\n&quot;);break;
-   case 4:printf(&quot;30\n&quot;);break;
-   case 5:printf(&quot;31\n&quot;);break;
-   case 6:printf(&quot;30\n&quot;);break;
-   case 7:printf(&quot;31\n&quot;);break;
-   case 8:printf(&quot;31\n&quot;);break;
-   case 9:printf(&quot;30\n&quot;);break;
-   case 10:printf(&quot;31\n&quot;);break;
-   case 11:printf(&quot;30\n&quot;);break;
-   default:printf(&quot;31\n&quot;);break;
-  &#125;
-</code></pre>
-}<br>eturn 0;<br>}</li>
+<li>这是我同学的做法：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt; stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;    int year,m;</span><br><span class="line">     scanf(&quot;%d %d&quot;,&amp;year,&amp;m);</span><br><span class="line">     if(((year%100==0&amp;&amp;year%400==0)||(year%4==0&amp;&amp;year%100!=0))&amp;&amp;m==2)&#123;</span><br><span class="line">     printf(&quot;29\n&quot;);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">          switch (m) &#123;</span><br><span class="line">          case 1:printf(&quot;31\n&quot;);break;</span><br><span class="line">          case 2:printf(&quot;28\n&quot;);break;</span><br><span class="line">          case 3:printf(&quot;31\n&quot;);break;</span><br><span class="line">          case 4:printf(&quot;30\n&quot;);break;</span><br><span class="line">          case 5:printf(&quot;31\n&quot;);break;</span><br><span class="line">          case 6:printf(&quot;30\n&quot;);break;</span><br><span class="line">          case 7:printf(&quot;31\n&quot;);break;</span><br><span class="line">          case 8:printf(&quot;31\n&quot;);break;</span><br><span class="line">          case 9:printf(&quot;30\n&quot;);break;</span><br><span class="line">          case 10:printf(&quot;31\n&quot;);break;</span><br><span class="line">          case 11:printf(&quot;30\n&quot;);break;</span><br><span class="line">          default:printf(&quot;31\n&quot;);break;</span><br><span class="line">         &#125;</span><br><span class="line">&#125;</span><br><span class="line">eturn 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><ul>
-<li>这是我的做法：<br>#include &lt;stdio.h&gt;<br>int main()<br>{<br> int year,month,day;<br> printf(“请分别输入年和月: “);<br> scanf(“%d %d”,&amp;year,&amp;month);<br> if(month==2&amp;&amp;((year%100==0&amp;&amp;year%400==0)||(year%4==0&amp;&amp;year%100!=0)))<br> printf(“该年该月有29天”);<br> else{<pre><code> if(month==1||month==3||month==5||month==7||month==8||month==10||month==12)
- printf(&quot;该年该月有31天&quot;);
- else&#123;
-        if(month==4||month==6||month==9||month==11)
- printf(&quot;该年该月有30天&quot;);
-        else
-      printf(&quot;该年该月有28天&quot;);
-                &#125;
-    &#125;
-</code></pre>
- return 0;<br>}</li>
+<li>这是我的做法：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int year,month,day;</span><br><span class="line">	printf(&quot;请分别输入年和月: &quot;);</span><br><span class="line">	scanf(&quot;%d %d&quot;,&amp;year,&amp;month);</span><br><span class="line">    if(month==2&amp;&amp;((year%100==0&amp;&amp;year%400==0)||(year%4==0&amp;&amp;year%100!=0)))</span><br><span class="line">    printf(&quot;该年该月有29天&quot;);</span><br><span class="line">    else&#123;</span><br><span class="line">    	if(month==1||month==3||month==5||month==7||month==8||month==10||month==12)</span><br><span class="line">    	printf(&quot;该年该月有31天&quot;);</span><br><span class="line">    	else&#123;</span><br><span class="line">               if(month==4||month==6||month==9||month==11)</span><br><span class="line">		printf(&quot;该年该月有30天&quot;);</span><br><span class="line">               else</span><br><span class="line">             printf(&quot;该年该月有28天&quot;);</span><br><span class="line">                       &#125;</span><br><span class="line">           &#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -550,7 +518,7 @@ return 0;
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-11 23:00:28" itemprop="dateModified" datetime="2021-11-11T23:00:28+08:00">2021-11-11</time>
+                <time title="修改时间：2021-11-12 22:18:13" itemprop="dateModified" datetime="2021-11-12T22:18:13+08:00">2021-11-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -573,18 +541,17 @@ return 0;
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="c语言的框架"><a href="#c语言的框架" class="headerlink" title="c语言的框架"></a>c语言的框架</h1><p>#include &lt;文件名&gt;<br>int main()<br>{<br>return 0;<br>}<br>这样就是一个基础的c语言框架，目前接触不多，了解甚少，希望日后能更多的接触不同的框架。</p>
+          <h1 id="c语言的框架"><a href="#c语言的框架" class="headerlink" title="c语言的框架"></a>c语言的框架</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;文件名&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就是一个基础的c语言框架，目前接触不多，了解甚少，希望日后能更多的接触不同的框架。</p>
 <h1 id="stdio-h中六种常用方法的小结"><a href="#stdio-h中六种常用方法的小结" class="headerlink" title="stdio.h中六种常用方法的小结"></a>stdio.h中六种常用方法的小结</h1><p>scanf函数–格式化输入函数<br>printf函数–格式化输出函数<br>getchar函数–从缓冲区读取一个字符，但只有第一个字符作为返回值，该函数的输入知道回车才结束，但从键盘输入一堆字符时，这些字符会存储在缓冲区中，按下回车键开始调用getchar函数，把最先存储的字符读取，然后删除，在继续读取释放，直到满足条件为止。<br>putchar函数–功能：输出一个字符<br>gets函数–功能：从缓冲区读取一个“字符串”存储到字符指针变量str指向的内存空间<br>puts函数–功能：将字符串输出到终端，puts函数一次只能输出一个字符串，字符串可以包含转义字符</p>
 <ul>
 <li>注意：<br>putchar函数只能用于单个字符；<br>当putchar参数为被单引号括起来的字符时，直接输出该字符；<br>当参数介于0~127时且为整数时，视为ASCII码，输出该ASCII码对应的字符；<br>当参数为事先定义好的char变量时，输出该变量指向的字符。</li>
 </ul>
 <h1 id="前几节课的作业"><a href="#前几节课的作业" class="headerlink" title="前几节课的作业"></a>前几节课的作业</h1><ul>
-<li><p>关于将华氏温度转化为摄氏度的小程序<br>#include&lt;stdio.h&gt;<br>int  main()<br>{    int F,C;<br> printf(“请输入一个数 C:”);<br> scanf(“%d”,&amp;C);<br> F=9/5*C+32;<br> printf(“%d”,F);<br>}</p>
-</li>
-<li><p>关于将千米数转化为英里数，要求使用常变量的小程序<br>#include&lt;stdio.h&gt;<br>int  main()<br>{<br>const double a=1.60934;<br>double b,c;<br>scanf(“%lf\n”,&amp;c);<br>b=c/a;<br>printf(“%lf\n”,b);<br>return 0;<br>}</p>
-</li>
+<li>关于将华氏温度转化为摄氏度的小程序<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int  main()</span><br><span class="line">&#123;	int F,C;</span><br><span class="line">	printf(&quot;请输入一个数 C:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;,&amp;C);</span><br><span class="line">	F=9/5*C+32;</span><br><span class="line">	printf(&quot;%d&quot;,F);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>关于将千米数转化为英里数，要求使用常变量的小程序<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int  main()</span><br><span class="line">&#123;</span><br><span class="line">const double a=1.60934;</span><br><span class="line">double b,c;</span><br><span class="line">scanf(&quot;%lf\n&quot;,&amp;c);</span><br><span class="line">b=c/a;</span><br><span class="line">printf(&quot;%lf\n&quot;,b);</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>这些只是前几节课所接触到的内容之一，还有一些内容会在周末更新，我想要学习一门语言需要的是耐心和持续不断复习以前的知识和接触新的内容。<br>搭建博客的目的也是一样，自律地学习知识。<br>现在处于入门阶段，前面的知识若有遗漏，出错等。敬请各路大神斧正。</li>
 </ul>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这些只是前几节课所接触到的内容之一，还有一些内容会在周末更新，我想要学习一门语言需要的是耐心和持续不断复习以前的知识和接触新的内容。<br>搭建博客的目的也是一样，自律地学习知识。<br>现在处于入门阶段，前面的知识若有遗漏，出错等。敬请各路大神斧正。</p>
 
       
     </div>
