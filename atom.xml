@@ -6,7 +6,7 @@
   <link href="http://顾绿绿のblog.com/atom.xml" rel="self"/>
   
   <link href="http://顾绿绿のblog.com/"/>
-  <updated>2021-11-12T14:34:59.635Z</updated>
+  <updated>2021-11-14T15:07:26.123Z</updated>
   <id>http://顾绿绿のblog.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>php入门</title>
+    <link href="http://顾绿绿のblog.com/2021/11/14/php%E5%85%A5%E9%97%A8/"/>
+    <id>http://顾绿绿のblog.com/2021/11/14/php%E5%85%A5%E9%97%A8/</id>
+    <published>2021-11-14T15:05:47.000Z</published>
+    <updated>2021-11-14T15:07:26.123Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
+      
+    
+    
+    
+    <category term="php" scheme="http://顾绿绿のblog.com/categories/php/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>构造数据类型（2）</title>
