@@ -6,7 +6,7 @@
   <link href="http://顾绿绿のblog.com/atom.xml" rel="self"/>
   
   <link href="http://顾绿绿のblog.com/"/>
-  <updated>2021-11-14T15:07:26.123Z</updated>
+  <updated>2021-11-18T03:07:57.876Z</updated>
   <id>http://顾绿绿のblog.com/</id>
   
   <author>
@@ -17,18 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>php</title>
+    <link href="http://顾绿绿のblog.com/2021/11/18/php/"/>
+    <id>http://顾绿绿のblog.com/2021/11/18/php/</id>
+    <published>2021-11-18T03:07:57.000Z</published>
+    <updated>2021-11-18T03:07:57.876Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>php入门</title>
     <link href="http://顾绿绿のblog.com/2021/11/14/php%E5%85%A5%E9%97%A8/"/>
     <id>http://顾绿绿のblog.com/2021/11/14/php%E5%85%A5%E9%97%A8/</id>
     <published>2021-11-14T15:05:47.000Z</published>
-    <updated>2021-11-14T15:07:26.123Z</updated>
+    <updated>2021-11-18T03:53:49.637Z</updated>
     
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="PHP代码标记"><a href="#PHP代码标记" class="headerlink" title="PHP代码标记"></a>PHP代码标记</h1><ul><li>ASP标记：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">php代码</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></li><li>短标记：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">Php代码</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>以上两种基本弃用，如需使用，应在配置文件中开启。</li><li>脚本标记：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;php&quot;&gt;</span><br><span class="line">php代码</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></li><li>标准标记：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">php代码</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>以上四种标记中，标准标记较为常用。</li></ul><h1 id="PHP注释"><a href="#PHP注释" class="headerlink" title="PHP注释"></a>PHP注释</h1><p>PHP注释有利于初学者学习PHP代码，增加代码可读性。<br>因为PHP代码的底层逻辑是C语言，所以有较多地方与C语言类似。</p><ul><li>行注释（只对一行注释）：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//:后面跟的都是注释</span><br><span class="line"> #:后面跟的都是注释</span><br></pre></td></tr></table></figure></li><li>块注释（对多行注释）：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   /*：</span><br><span class="line">   注释内容</span><br><span class="line">*/</span><br></pre></td></tr></table></figure></li></ul><h1 id="PHP分隔符"><a href="#PHP分隔符" class="headerlink" title="PHP分隔符"></a>PHP分隔符</h1><p>与C语言相同，同样使用“;”来分隔代码行与代码行。</p><h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><ul><li>定义变量：<br>$字符;  或者  $字符 = 字符或者数字;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//定义变量：PHP中不需要任何关键字定义变量（赋值）</span><br><span class="line">$var1;      //定义</span><br><span class="line">$var2 = 1;  //定义同时赋值</span><br></pre></td></tr></table></figure></li><li>访问变量（输出变量）：<br>echo $字符;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $var2; //通过var2变量名字找到存储的内容1，然后输出</span><br></pre></td></tr></table></figure></li><li>修改变量：<br>$字符 = 其他字符或者数字;<br>echo ‘<hr/>‘,$字符;<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$var2 = 2;</span><br><span class="line">echo &#x27;&lt;hr/&gt;&#x27;,$var2;</span><br></pre></td></tr></table></figure></li><li>删除变量：<br>使用unset(变量名字)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unset($var2);</span><br></pre></td></tr></table></figure></li><li>预定义变量<br>预定义变量：提前定义的变量，系统定义的变量，存储许多需要用到的数据（预定义变量都是数组）</li></ul>]]></content>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;PHP代码标记&quot;&gt;&lt;a href=&quot;#PHP代码标记&quot; class=&quot;headerlink&quot; title=&quot;PHP代码标记&quot;&gt;&lt;/a&gt;PHP代码标记&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;ASP标记：&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;t</summary>
       
     
     
@@ -58,14 +72,14 @@
     <link href="http://顾绿绿のblog.com/2021/11/05/%E6%9E%84%E9%80%A0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%882%EF%BC%89/"/>
     <id>http://顾绿绿のblog.com/2021/11/05/%E6%9E%84%E9%80%A0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%882%EF%BC%89/</id>
     <published>2021-11-05T14:27:01.000Z</published>
-    <updated>2021-11-15T10:55:13.737Z</updated>
+    <updated>2021-11-15T10:58:02.992Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="共用体"><a href="#共用体" class="headerlink" title="共用体"></a>共用体</h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1>]]></content>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;共用体&quot;&gt;&lt;a href=&quot;#共用体&quot; class=&quot;headerlink&quot; title=&quot;共用体&quot;&gt;&lt;/a&gt;共用体&lt;/h1&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;二维数组&quot;&gt;&lt;a href=&quot;#二维数组&quot; class=&quot;headerlink&quot; title=&quot;二维数组&quot;&gt;&lt;/a&gt;二维数组&lt;/h1&gt;</summary>
       
     
     
