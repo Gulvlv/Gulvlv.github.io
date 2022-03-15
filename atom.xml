@@ -6,7 +6,7 @@
   <link href="http://顾绿绿のblog.com/atom.xml" rel="self"/>
   
   <link href="http://顾绿绿のblog.com/"/>
-  <updated>2021-11-18T03:07:57.876Z</updated>
+  <updated>2022-03-15T11:52:49.644Z</updated>
   <id>http://顾绿绿のblog.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tset</title>
+    <link href="http://顾绿绿のblog.com/2022/03/15/tset/"/>
+    <id>http://顾绿绿のblog.com/2022/03/15/tset/</id>
+    <published>2022-03-15T11:52:07.000Z</published>
+    <updated>2022-03-15T11:52:49.644Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="test"><a href="#test" class="headerlink" title="test"></a>test</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;test&quot;&gt;&lt;a href=&quot;#test&quot; class=&quot;headerlink&quot; title=&quot;test&quot;&gt;&lt;/a&gt;test&lt;/h1&gt;</summary>
+      
+    
+    
+    
+    <category term="php" scheme="http://顾绿绿のblog.com/categories/php/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>php</title>
@@ -139,9 +161,9 @@
     <link href="http://顾绿绿のblog.com/2021/10/28/%E5%85%B3%E4%BA%8Ewhile%E5%92%8Cfor%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/"/>
     <id>http://顾绿绿のblog.com/2021/10/28/%E5%85%B3%E4%BA%8Ewhile%E5%92%8Cfor%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/</id>
     <published>2021-10-28T13:32:09.000Z</published>
-    <updated>2021-11-12T14:21:05.471Z</updated>
+    <updated>2021-12-02T12:54:26.589Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="关于while"><a href="#关于while" class="headerlink" title="关于while"></a>关于while</h1><p>while，中文叫 当…时，其实就是当条件满足时就执行代码，一旦不满足了就不执行了。<br>while (条件) { 满足条件就执行 }<br>关于for<br>for作为一种较为常用的循环语句，经常出现于题目中。相比于while，可能更难于理解。<br>具体操作可以像这样：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(i=1;i&lt;10;i++)&#123;</span><br><span class="line">     要执行的语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这个控制语句中，i=1是循环的开始，我们给他定义的一个量。<br>i&lt;10是循环的最后要满足的条件，一旦不符合就结束循环。<br>i++是循环一次后进行步骤，就好比i=1带入要执行的语句中得到了个结果，在第二次循环中它变成了i++,在第二次循环开始前i=2。<br>可能这个循环语句大家一开始接触时会觉得十分的抽象，但是只要把它分为三个部分：开始时，循环最后满足的条件，一次循环后所要执行的。这三个部分会更有利于我们去理解这个程序。</p><h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><ul><li>作业里面的求级数之和：e^x的泰勒展开式。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">double sum=1,p,i,e=1,x;</span><br><span class="line">int n;</span><br><span class="line">printf(&quot;请分别输入n,x：\n&quot;);</span><br><span class="line">scanf(&quot;%d %lf&quot;,&amp;n,&amp;x);</span><br><span class="line">if(n&lt;0)&#123;</span><br><span class="line">printf(&quot;错误&quot;);</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">for(p=1;p&lt;=n;p++)&#123;</span><br><span class="line">i=pow(x,p);</span><br><span class="line">e=e*p;</span><br><span class="line">sum+=(i/e);</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;e^%.1lf=%.1lf&quot;,x,sum);</span><br><span class="line">&#125;</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>在这个循环中就可以明显的看出p=1是开始的值，p&lt;=n是结束时需要满足的条件，p++是这个循环过程中所需要执行的语句。<br>目前阶段而言，for循环较为常用而且只要理解了它这三个部分，for循环就会变得很简单。<br>当然这还只是我个人的见解。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="关于while"><a href="#关于while" class="headerlink" title="关于while"></a>关于while</h1><p>while，中文叫 当…时，其实就是当条件满足时就执行代码，一旦不满足了就不执行了。<br>while (条件) { 满足条件就执行 }</p><h1 id="关于for"><a href="#关于for" class="headerlink" title="关于for"></a>关于for</h1><p>for作为一种较为常用的循环语句，经常出现于题目中。相比于while，可能更难于理解。<br>具体操作可以像这样：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(i=1;i&lt;10;i++)&#123;</span><br><span class="line">     要执行的语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这个控制语句中，i=1是循环的开始，我们给他定义的一个量。<br>i&lt;10是循环的最后要满足的条件，一旦不符合就结束循环。<br>i++是循环一次后进行步骤，就好比i=1带入要执行的语句中得到了个结果，在第二次循环中它变成了i++,在第二次循环开始前i=2。<br>可能这个循环语句大家一开始接触时会觉得十分的抽象，但是只要把它分为三个部分：开始时，循环最后满足的条件，一次循环后所要执行的。这三个部分会更有利于我们去理解这个程序。</p><h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><ul><li>作业里面的求级数之和：e^x的泰勒展开式。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">double sum=1,p,i,e=1,x;</span><br><span class="line">int n;</span><br><span class="line">printf(&quot;请分别输入n,x：\n&quot;);</span><br><span class="line">scanf(&quot;%d %lf&quot;,&amp;n,&amp;x);</span><br><span class="line">if(n&lt;0)&#123;</span><br><span class="line">printf(&quot;错误&quot;);</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">for(p=1;p&lt;=n;p++)&#123;</span><br><span class="line">i=pow(x,p);</span><br><span class="line">e=e*p;</span><br><span class="line">sum+=(i/e);</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;e^%.1lf=%.1lf&quot;,x,sum);</span><br><span class="line">&#125;</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>在这个循环中就可以明显的看出p=1是开始的值，p&lt;=n是结束时需要满足的条件，p++是这个循环过程中所需要执行的语句。<br>目前阶段而言，for循环较为常用而且只要理解了它这三个部分，for循环就会变得很简单。<br>当然这还只是我个人的见解。</p>]]></content>
     
     
       
