@@ -1,0 +1,186 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Learning Notes — Introduction to Modern Cryptography (Katz, 2020) | 顾绿绿のblog</title><meta name="author" content="顾绿绿"><meta name="copyright" content="顾绿绿"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="just for leraning from page 328 to 360,随书笔记，写这个文档是为了激励自己学习相关的文献，争取早日学会FHE相关内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning Notes — Introduction to Modern Cryptography (Katz, 2020)">
+<meta property="og:url" content="https://gulvlv.github.io/2025/10/17/learningFHE/index.html">
+<meta property="og:site_name" content="顾绿绿のblog">
+<meta property="og:description" content="just for leraning from page 328 to 360,随书笔记，写这个文档是为了激励自己学习相关的文献，争取早日学会FHE相关内容。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gulvlv.github.io/img/meihua.png">
+<meta property="article:published_time" content="2025-10-17T01:27:00.000Z">
+<meta property="article:modified_time" content="2025-10-20T07:58:01.828Z">
+<meta property="article:author" content="顾绿绿">
+<meta property="article:tag" content="Cryptography">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gulvlv.github.io/img/meihua.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://gulvlv.github.io/2025/10/17/learningFHE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Learning Notes — Introduction to Modern Cryptography (Katz, 2020)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="referrer" content="no-referrer-when-downgrade" /><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/background.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/meihua.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">顾绿绿のblog</span></a><a class="nav-page-title" href="/"><span class="site-name">Learning Notes — Introduction to Modern Cryptography (Katz, 2020)</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Learning Notes — Introduction to Modern Cryptography (Katz, 2020)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-10-17T01:27:00.000Z" title="发表于 2025-10-17 09:27:00">2025-10-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-20T07:58:01.828Z" title="更新于 2025-10-20 15:58:01">2025-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Cryptography/">Cryptography</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><ul>
+<li><a href="#1-number-theory-and-cryptographic-hardness-assumptions%E6%95%B0%E8%AE%BA%E5%92%8C%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9B%B0%E9%9A%BE%E5%81%87%E8%AE%BE">1. Number Theory and Cryptographic Hardness Assumptions数论和密码学困难假设</a></li>
+<li><a href="#2-%E5%9F%BA%E7%A1%80%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E9%A2%84%E5%A4%87">2. 基础数论知识预备</a><ul>
+<li><a href="#21-%E7%B4%A0%E6%95%B0%E5%92%8C%E5%8F%AF%E9%99%A4%E6%80%A7">2.1. 素数和可除性</a></li>
+<li><a href="#22-%E6%A8%A1%E8%BF%90%E7%AE%97">2.2. 模运算</a></li>
+</ul>
+</li>
+<li><a href="#3-%E7%B4%A0%E6%95%B0%E5%88%86%E8%A7%A3%E5%92%8Crsa">3. 素数、分解和RSA</a><ul>
+<li><a href="#31-%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E7%B4%A0%E6%95%B0">3.1. 生成随机素数</a></li>
+<li><a href="#32-%E7%B4%A0%E6%80%A7%E6%B5%8B%E8%AF%95">3.2. 素性测试</a></li>
+<li><a href="#33-%E6%9B%B4%E6%96%B0-2025%E5%B9%B410%E6%9C%8820%E6%97%A515%E7%82%B949%E5%88%86">3.3. 更新 2025年10月20日15点49分</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="1-Number-Theory-and-Cryptographic-Hardness-Assumptions数论和密码学困难假设"><a href="#1-Number-Theory-and-Cryptographic-Hardness-Assumptions数论和密码学困难假设" class="headerlink" title="1. Number Theory and Cryptographic Hardness Assumptions数论和密码学困难假设"></a>1. Number Theory and Cryptographic Hardness Assumptions数论和密码学困难假设</h1><p>现代密码学系统总是基于一个困难问题提出的，例如：RSA基于大整数因子分解问题、Diffie-Hellman基于有限域上的‌离散对数问题‌、ECC基于椭圆曲线上的离散对数问题等等…</p>
+<p>引出One-way Function单向函数，以及基于何种大数困难问题。$\rightarrow$是否就是引出One-way Trapdoor Function单项陷门函数？</p>
+<h1 id="2-基础数论知识预备"><a href="#2-基础数论知识预备" class="headerlink" title="2. 基础数论知识预备"></a>2. 基础数论知识预备</h1><p>后续是一些简单的数论问题在密码学中的运用</p>
+<h2 id="2-1-素数和可除性"><a href="#2-1-素数和可除性" class="headerlink" title="2.1. 素数和可除性"></a>2.1. 素数和可除性</h2><ol>
+<li><p>$a|b$ $\rightarrow$ $a$ 整除 $b$  $\rightarrow$  $b&#x3D;ka$<br>同时若 $a\not\in{1,b}$ 那么 $a$ 称为 $b$ 的一个非平凡除数 $\rightarrow$ 1和它本身称为平凡约数；大于1小于它本身的约数称为非平凡约数。整数b的非平凡约数(nontrivial divisor)称为b的因数(factor)。<br>$a$是一个整数，设$b$是一个正整数，那么存在唯一的整数 $q、r$ ，使得 $a&#x3D;qb+r$ 并且$0\leq r&lt;b$。</p>
+</li>
+<li><p>最大公约数 $c$ 记作 $\gcd(a,b)$ ，使得 $c|a$ 和 $c|b$ 。如果 $\gcd(a,b)&#x3D;1$ ，a和b是互质的。<br>设 $a,b$ 为正整数，则存在 $X,Y$ 使得 $Xa+Yb&#x3D;gcd(a,b)$ 。此外，$gcd(a,b)$ 是能以这种方式表示的最小正整数。</p>
+</li>
+<li><p>$c|ab$ 和 $gcd(a,c) &#x3D; 1$ ，那么 $c|b$ 。因此，如果 $p$ 是素数且 $p|ab$ ，则要么 $p|a$ or $p|b$ 。</p>
+</li>
+<li><p>如果 $a|N$ ，$b|N$ ，和 $gcd(a,b)&#x3D;1$ ，那么 $ab|N$ 。</p>
+</li>
+</ol>
+<h2 id="2-2-模运算"><a href="#2-2-模运算" class="headerlink" title="2.2. 模运算"></a>2.2. 模运算</h2><p>同余关系： $a$ 和 $b$ 模 $N$ 同余，记作 $ a&#x3D;b \bmod N$ 即，即 $[a \bmod N]&#x3D;[b \bmod N]$<br>同余有自反性，传递性,同余也遵守关于加法、减法和乘法的标准算术规则。注：无除法，$ab &#x3D; cb\bmod N$ 不一定意味着 $a&#x3D;c \bmod N$ 。</p>
+<h1 id="3-素数、分解和RSA"><a href="#3-素数、分解和RSA" class="headerlink" title="3. 素数、分解和RSA"></a>3. 素数、分解和RSA</h1><p>正如前面所说，这里引出RSA，RSA是基于大整数分解困难问题提出的公钥。原文引出整数分离困难，再紧接着提出最难分解的数是那些只有大素数因子的数。</p>
+<h2 id="3-1-生成随机素数"><a href="#3-1-生成随机素数" class="headerlink" title="3.1. 生成随机素数"></a>3.1. 生成随机素数</h2><p>找n位中的素数，用循环一次一次找n位随机数，对比是否为素数。<br><strong>ALGORITHM RANDOM</strong>算法伪代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Generating a random prime high-level outline</span><br><span class="line">Input: Length n; parameter t</span><br><span class="line">Output: A uniform n-bit prime</span><br><span class="line">for i = 1 to t:</span><br><span class="line">    p&#x27; ← &#123;0,1&#125;^(n-1)</span><br><span class="line">    p  := 1 || p&#x27;</span><br><span class="line">    if p is prime return p</span><br><span class="line">return fail</span><br></pre></td></tr></table></figure>
+
+<p>引申出<strong>素数定理</strong>，数学中的一个重要结果，给出了给定长度的整数中素数比例的相当精确的界限。<br>对于任何$n &gt; 1$， $n$位整数为素数的比例至少为 $1&#x2F;3n$。</p>
+<p>设置t&#x3D;3n2，那么在所有t次算法迭代中，一个素数没有被选中的概率最多是</p>
+<p>$\left(1-\frac{1}{3n}\right)^t&#x3D;\left(\left(1-\frac{1}{3n}\right)^{3n}\right)^n\leq\left(e^{-1}\right)^n&#x3D;e^{-n}$</p>
+<p>在n中是可忽略的。因此，使用poly(n)次迭代，得到一个算法，其输出失败的概率在n中是可忽略的。</p>
+<h2 id="3-2-素性测试"><a href="#3-2-素性测试" class="headerlink" title="3.2. 素性测试"></a>3.2. 素性测试</h2><p>如果p是素数，那么Miller–Rabin测试总是输出素数。如果p是合数，算法除以概率至多为2^(-t)外，总是输出合数。</p>
+<h2 id="3-3-更新-2025年10月20日15点49分"><a href="#3-3-更新-2025年10月20日15点49分" class="headerlink" title="3.3. 更新 2025年10月20日15点49分"></a>3.3. 更新 2025年10月20日15点49分</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://gulvlv.github.io">顾绿绿</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://gulvlv.github.io/2025/10/17/learningFHE/">https://gulvlv.github.io/2025/10/17/learningFHE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://gulvlv.github.io" target="_blank">顾绿绿のblog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Cryptography/">Cryptography</a></div><div class="post-share"><div class="social-share" data-image="/img/meihua.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2024/12/02/Hexo%E7%BE%8E%E5%8C%96--Butterfly%E4%B8%BB%E9%A2%98%EF%BC%9A%E5%8A%A0%E5%85%A5clustrmaps%E8%AE%BF%E5%AE%A2%E5%9C%B0%E5%9B%BE/" title="Hexo美化--Butterfly主题：加入clustrmaps访客地图"><img class="cover" src="/img/meihua.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Hexo美化--Butterfly主题：加入clustrmaps访客地图</div></div><div class="info-2"><div class="info-item-1">参考主题作者教程，发现部署失败。找到教程，也遇到了一些问题。我对教程改进，成功将结果部署到个人博客中。</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">顾绿绿</div><div class="author-info-description">心想事成</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Gulvlv"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Gulvlv" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Number-Theory-and-Cryptographic-Hardness-Assumptions%E6%95%B0%E8%AE%BA%E5%92%8C%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9B%B0%E9%9A%BE%E5%81%87%E8%AE%BE"><span class="toc-number">1.</span> <span class="toc-text">1. Number Theory and Cryptographic Hardness Assumptions数论和密码学困难假设</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%9F%BA%E7%A1%80%E6%95%B0%E8%AE%BA%E7%9F%A5%E8%AF%86%E9%A2%84%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text">2. 基础数论知识预备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%B4%A0%E6%95%B0%E5%92%8C%E5%8F%AF%E9%99%A4%E6%80%A7"><span class="toc-number">2.1.</span> <span class="toc-text">2.1. 素数和可除性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%A8%A1%E8%BF%90%E7%AE%97"><span class="toc-number">2.2.</span> <span class="toc-text">2.2. 模运算</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E7%B4%A0%E6%95%B0%E3%80%81%E5%88%86%E8%A7%A3%E5%92%8CRSA"><span class="toc-number">3.</span> <span class="toc-text">3. 素数、分解和RSA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E7%B4%A0%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text">3.1. 生成随机素数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E7%B4%A0%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">3.2.</span> <span class="toc-text">3.2. 素性测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%9B%B4%E6%96%B0-2025%E5%B9%B410%E6%9C%8820%E6%97%A515%E7%82%B949%E5%88%86"><span class="toc-number">3.3.</span> <span class="toc-text">3.3. 更新 2025年10月20日15点49分</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/10/17/learningFHE/" title="Learning Notes — Introduction to Modern Cryptography (Katz, 2020)"><img src="/img/meihua.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learning Notes — Introduction to Modern Cryptography (Katz, 2020)"/></a><div class="content"><a class="title" href="/2025/10/17/learningFHE/" title="Learning Notes — Introduction to Modern Cryptography (Katz, 2020)">Learning Notes — Introduction to Modern Cryptography (Katz, 2020)</a><time datetime="2025-10-17T01:27:00.000Z" title="发表于 2025-10-17 09:27:00">2025-10-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/02/Hexo%E7%BE%8E%E5%8C%96--Butterfly%E4%B8%BB%E9%A2%98%EF%BC%9A%E5%8A%A0%E5%85%A5clustrmaps%E8%AE%BF%E5%AE%A2%E5%9C%B0%E5%9B%BE/" title="Hexo美化--Butterfly主题：加入clustrmaps访客地图"><img src="/img/meihua.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo美化--Butterfly主题：加入clustrmaps访客地图"/></a><div class="content"><a class="title" href="/2024/12/02/Hexo%E7%BE%8E%E5%8C%96--Butterfly%E4%B8%BB%E9%A2%98%EF%BC%9A%E5%8A%A0%E5%85%A5clustrmaps%E8%AE%BF%E5%AE%A2%E5%9C%B0%E5%9B%BE/" title="Hexo美化--Butterfly主题：加入clustrmaps访客地图">Hexo美化--Butterfly主题：加入clustrmaps访客地图</a><time datetime="2024-12-02T09:53:03.000Z" title="发表于 2024-12-02 17:53:03">2024-12-02</time></div></div></div></div><div class="card-widget card-map"><div class="card-content"><div class="item-headline"><i class="fa fa-globe-asia" aria-hidden="true"></i><span>访客地图</span></div><script id="clstr_globe" type="text/javascript" defer="defer" src="//clustrmaps.com/globe.js?d=llb0qg75G2-N8UWhC41J_oOtPMIYst1wQrAnvncbVjU"></script></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2025 By 顾绿绿</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的博客,一起探索无限的可能</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
