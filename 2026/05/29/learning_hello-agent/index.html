@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Learning Notes — Hello-Agents | 顾绿绿のblog</title><meta name="author" content="顾绿绿"><meta name="copyright" content="顾绿绿"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="随书笔记，写这个文档是为了激励自己学习Agent相关内容，争取早日实习！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning Notes — Hello-Agents">
+<meta property="og:url" content="https://gulvlv.github.io/2026/05/29/learning_hello-agent/index.html">
+<meta property="og:site_name" content="顾绿绿のblog">
+<meta property="og:description" content="随书笔记，写这个文档是为了激励自己学习Agent相关内容，争取早日实习！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gulvlv.github.io/img/meihua.png">
+<meta property="article:published_time" content="2026-05-29T09:31:28.000Z">
+<meta property="article:modified_time" content="2026-06-15T12:34:44.408Z">
+<meta property="article:author" content="顾绿绿">
+<meta property="article:tag" content="Agent">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gulvlv.github.io/img/meihua.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://gulvlv.github.io/2026/05/29/learning_hello-agent/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Learning Notes — Hello-Agents',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="referrer" content="no-referrer-when-downgrade" /><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/background.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/meihua.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">顾绿绿のblog</span></a><a class="nav-page-title" href="/"><span class="site-name">Learning Notes — Hello-Agents</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Learning Notes — Hello-Agents</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-29T09:31:28.000Z" title="发表于 2026-05-29 17:31:28">2026-05-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-15T12:34:44.408Z" title="更新于 2026-06-15 20:34:44">2026-06-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Agent/">Agent</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>Agent初认知</h1>
+<p>原来对Agent的相关定义有这么早，对于特定条件返回对应条件这样的方式也是一种智能体，学习到新的这样一个名词：反射智能体（Simple Reflex Agent）。<br>
+引申出新的模型基于模型的反射智能体（Model-Based Reflex Agent）比如应用在智驾的时候，对于曾经能够监测到的车，后续无法监测的时候仍然有一个大致的预估反馈。文档指出这让Agent有了一个初始的“记忆”的概念。<br>
+考虑花销最少的时候引出基于效用的智能体（Utility-Based Agent）<br>
+当前需求日益复杂的今天引申出通过与环境互动自主学习的智能体，学习型智能体（Learning Agent）</p>
+<p>当前LLM大语言模型正在成为驱动智能体的新方式。从旅游的例子简单描述了LLM智能体如何考虑怎么做以及哪些方面需要考虑，最后加入用户的具体需求去进行规划学习。展示出上下文动态修正自身行为的能力，核心从之前简单的编写代码转变为用这样一个“大脑”去行动，代替。</p>
+<h2 id="智能体分类">智能体分类</h2>
+<p>对智能体进行了简单的定义分类，并举例说明。</p>
+<h1>智能体构成及运行原理</h1>
+<p>PEAS模型：性能度量(Performance)、环境(Environment)、执行器(Actuators)和传感器(Sensors)</p>
+<h2 id="智能体运行机制">智能体运行机制</h2>
+<p>智能体运行的时候并不是一次性完成问题，它是一个持续的与环境交互的环节，称为智能体循环。通过感知、思考（规划，工具选择）、行动等阶段运行，最后保留当前输出与前面阶段的联系。并且在下一次运行循环中加入该联系与输出。</p>
+<h1>完成一个简单的智能体</h1>
+<p>准备好相关提示词程序，对需要的功能进行拆解，<br>
+学习到环境配置，从hello-agent拉取code里的代码下来，简单配置了下，根据流程调用api返回思考的结果后再做决定，其中</p>
+<h3 id="北京输出">北京输出</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">用户输入: 你好，请帮我查询一下今天北京的天气，然后根据天气推荐一个合适的旅游景点。</span><br><span class="line">========================================</span><br><span class="line">--- 循环 <span class="number">1</span> ---</span><br><span class="line"></span><br><span class="line">正在调用大语言模型...</span><br><span class="line">大语言模型响应成功。</span><br><span class="line">模型输出:</span><br><span class="line">Thought: 用户需要查询北京的天气，然后根据天气推荐景点。首先调用 get_weather 工具获取北京天气。</span><br><span class="line">Action: get_weather(city=<span class="string">&quot;北京&quot;</span>)</span><br><span class="line"></span><br><span class="line">Observation: 北京当前天气：Patchy rain nearby，气温<span class="number">25</span>摄氏度</span><br><span class="line">========================================</span><br><span class="line">--- 循环 <span class="number">2</span> ---</span><br><span class="line"></span><br><span class="line">正在调用大语言模型...</span><br><span class="line">大语言模型响应成功。</span><br><span class="line">模型输出:</span><br><span class="line">Thought: 已获取北京天气为“Patchy rain nearby”，现在根据此天气调用 get_attraction 获取推荐景点。</span><br><span class="line">Action: get_attraction(city=<span class="string">&quot;北京&quot;</span>, weather=<span class="string">&quot;Patchy rain nearby&quot;</span>)</span><br><span class="line"></span><br><span class="line">Observation: In rainy weather <span class="keyword">in</span> Beijing, visit the China National Museum <span class="keyword">and</span> the Beijing Planetarium <span class="keyword">for</span> indoor cultural <span class="keyword">and</span> educational experiences.</span><br><span class="line">========================================</span><br><span class="line">--- 循环 <span class="number">3</span> ---</span><br><span class="line"></span><br><span class="line">正在调用大语言模型...</span><br><span class="line">大语言模型响应成功。</span><br><span class="line">模型输出:</span><br><span class="line">Thought: 已获取到推荐景点，现在整理最终答案给用户。</span><br><span class="line">Action: Finish[北京当前天气为小雨，气温<span class="number">25</span>摄氏度。推荐前往中国国家博物馆或北京天文馆，这两处均为室内文化教育场所，适合雨天参观。]</span><br><span class="line"></span><br><span class="line">任务完成，最终答案: 北京当前天气为小雨，气温<span class="number">25</span>摄氏度。推荐前往中国国家博物馆或北京天文馆，这两处均为室内文化教育场所，适合雨天参观。</span><br></pre></td></tr></table></figure>
+<h3 id="杭州输出">杭州输出</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">用户输入: 你好，请帮我查询一下今天杭州的天气，然后根据天气推荐一个合适的旅游景点。</span><br><span class="line">========================================</span><br><span class="line">--- 循环 <span class="number">1</span> ---</span><br><span class="line"></span><br><span class="line">正在调用大语言模型...</span><br><span class="line">大语言模型响应成功。</span><br><span class="line">模型输出:</span><br><span class="line">Thought: 用户要求查询杭州今天的天气，然后根据天气推荐旅游景点。我需要先调用 get_weather 工具获取杭州的实时天气。</span><br><span class="line">Action: get_weather(city=<span class="string">&quot;杭州&quot;</span>)</span><br><span class="line"></span><br><span class="line">Observation: 杭州当前天气：Light rain shower，气温<span class="number">24</span>摄氏度</span><br><span class="line">========================================</span><br><span class="line">--- 循环 <span class="number">2</span> ---</span><br><span class="line"></span><br><span class="line">正在调用大语言模型...</span><br><span class="line">大语言模型响应成功。</span><br><span class="line">已截断多余的 Thought-Action 对</span><br><span class="line">模型输出:</span><br><span class="line">Thought: 根据获取到的杭州天气信息（小阵雨），现在需要查询推荐的旅游景点。</span><br><span class="line">Action: get_attraction(city=<span class="string">&quot;杭州&quot;</span>, weather=<span class="string">&quot;Light rain shower&quot;</span>)</span><br><span class="line"></span><br><span class="line">Observation: 在轻雨天气下，西湖和梅家塢是杭州最值得去的景点，前者风景如画，后者体验采茶放松。</span><br><span class="line">========================================</span><br><span class="line">--- 循环 <span class="number">3</span> ---</span><br><span class="line"></span><br><span class="line">正在调用大语言模型...</span><br><span class="line">大语言模型响应成功。</span><br><span class="line">模型输出:</span><br><span class="line">Thought: 已获取杭州天气和景点推荐，现在可以回答用户的问题。</span><br><span class="line">Action: Finish[杭州今天（根据查询时）天气为小阵雨，气温<span class="number">24</span>摄氏度。推荐旅游景点：西湖（风景如画）或梅家坞（体验采茶放松）。]</span><br><span class="line"></span><br><span class="line">任务完成，最终答案: 杭州今天（根据查询时）天气为小阵雨，气温<span class="number">24</span>摄氏度。推荐旅游景点：西湖（风景如画）或梅家坞（体验采茶放松）。</span><br></pre></td></tr></table></figure>
+<h1>chapter1 小节</h1>
+<p>首先是对智能体有几个分类，如下：</p>
+<ol>
+<li>基于内部决策架构的分类
+<ul>
+<li>反应式智能体</li>
+<li>模型式智能体</li>
+<li>基于目标的智能体</li>
+<li>基于效用的智能体<br>
+基于内部决策架构的分类（由简到繁的演进）：简单反应式智能体按&quot;条件→动作&quot;规则即时响应，无记忆、无状态（如恒温器）； 基<br>
+──于模型的智能体维护内部世界模型，能处理传感器不可见的环境状态（如隧道中的自动驾驶）；基于目标的智能体以目标为导向搜索行  动序列，回答&quot;如何到达目标&quot;（如 GPS 导航）；基于效用的智能体则在多方案间量化效用值，选出综合最优解，回答&quot;哪个方案最好&quot;<br>
+（如投资决策系统）；最上层是学习型智能体，通过强化学习等反馈机制自我改进（如─AlphaGo─Zero）。</li>
+</ul>
+</li>
+<li>基于时间与反应性的分类
+<ul>
+<li>反应式智能体</li>
+<li>规划式智能体</li>
+<li>混合式智能体（反应与规划混合的智能体）<br>
+基于时间与反应性的分类（速度与深度的权衡）：反应式智能体直接从感知映射到行动，速度快但短视（类系统1直觉）；规划式智能体先建模推演再执行，有远见但耗时（类系统2推理）；混合式智能体采用分层架构融合两者——底层快速响应，上层深度规划，是现代LLM Agent（如 ReAct 模式）最常用的范式。</li>
+</ul>
+</li>
+<li>基于知识表示的分类
+<ul>
+<li>符号主义 AI</li>
+<li>亚符号主义 AI</li>
+<li>神经符号主义 AI<br>
+基于知识表示的分类（知识如何表示和处理）：符号主义 AI 以显式符号和逻辑规则表示知识，可解释但遭遇知识获取瓶颈（如MYCIN 专家系统）；亚符号主义 AI 以神经网络连接权重隐式存储知识，自动从数据学习但黑盒难解释（如CNN、LSTM）；神经符号主义 AI 融合前两者——以神经网络为基座做模式识别，同时生成结构化符号步骤做推理，LL驱动的现代Agent（如 ChatGPT + 工具调用）正是这一范式的典型实践。</li>
+</ul>
+</li>
+</ol>
+<h1>chapter1 习题</h1>
+<ol>
+<li>请分析以下四个case中的主体是否属于智能体，如果是，那么属于哪种类型的智能体（可以从多个分类维度进行分析），并说明理由：</li>
+</ol>
+<ul>
+<li>case A：一台符合冯·诺依曼结构的超级计算机，拥有高达每秒 2EFlop 的峰值算力</li>
+<li>case B：特斯拉自动驾驶系统在高速公路上行驶时，突然检测到前方有障碍物，需要在毫秒级做出刹车或变道决策</li>
+<li>case C：AlphaGo在与人类棋手对弈时，需要评估当前局面并规划未来数十步的最优策略</li>
+<li>case D：ChatGPT 扮演的智能客服在处理用户投诉时，需要查询订单信息、分析问题原因、提供解决方案并安抚用户情绪</li>
+</ul>
+<p>answer：<br>
+case A：不是，超级计算机只提供算力，并不符合智能体的自主性，它必须依赖人类进行操作。</p>
+<p>case B：是，是混合式智能体。首先需要毫秒级的反应去处理，其次需要考虑到这个障碍物是什么要怎么做最优解。</p>
+<p>case C：是，规划型智能体，为了寻找最优解要花费相当一部分时间。</p>
+<p>case D：是。</p>
+<ol start="2">
+<li>假设你需要为一个&quot;智能健身教练&quot;设计任务环境。这个智能体能够：
+<ul>
+<li>通过可穿戴设备监测用户的心率、运动强度等生理数据</li>
+<li>根据用户的健身目标（减脂/增肌/提升耐力）动态调整训练计划</li>
+<li>在用户运动过程中提供实时语音指导和动作纠正</li>
+<li>评估训练效果并给出饮食建议<br>
+请使用 PEAS 模型完整描述这个智能体的任务环境，并分析该环境具有哪些特性（如部分可观察、随机性、动态性等）。</li>
+</ul>
+</li>
+</ol>
+<p>answer：<br>
+任务环境：<br>
+性能度量(Performance)：在通过可穿戴设备以及用户的训练计划给出合适的实施动作指导以及饮食建议。<br>
+环境(Environment)：可穿戴设备监测的数据（动态性）、用户健身目标（随机性）//需要调用参考的工具<br>
+执行器(Actuators)：接收穿戴设备数据、用户界面显示、格式化文本等<br>
+传感器(Sensors)：读取穿戴设备数据、读取用户输入的自然语言</p>
+<ol start="3">
+<li>某电商公司正在考虑两种方案来处理售后退款申请：<br>
+方案 A（Workflow）：设计一套固定流程，例如：<br>
+A.1 对于一般商品且在 7 天之内，金额 &lt; 100RMB 自动通过；100-500RMB 由客服审核；&gt;500RMB 需主管审批；而特殊商品（如定制品）一律拒绝退款<br>
+A.2 对于超过 7 天的商品，无论金额，只能由客服审核或主管审批；<br>
+方案 B（Agent）：搭建一个智能体系统，让它理解退款政策、分析用户历史行为、评估商品状况，并自主决策是否批准退款<br>
+请分析：
+<ul>
+<li>这两种方案各自的优缺点是什么？</li>
+<li>在什么情况下 Workflow 更合适？什么情况下 Agent 更有优势？如果你是该电商公司的负责人，你更倾向于采用哪种方案？</li>
+<li>是否存在一个方案 C，能够结合两种方案，达到扬长避短的效果？</li>
+</ul>
+</li>
+</ol>
+<p>answer：<br>
+A.1 Workflow的优点是十分准确，将退款金额牢牢把控，防止有疏忽的现象，保证了准确率。但是缺点也是比较明显，比如工作可能会有些繁琐，部分工作可能会产生堆积，工作量难以把控。<br>
+A.2 Workflow的优点是比较智能，能将流程简单化，省去人工审核部分，更加便捷有效，省时省钱省力。但是对于说部分用户通过培养相关习惯对智能体进行漏洞攻击，可能会出现部分大额资金集中被盗，对于监管和漏洞维护没办法做到十分及时。存在方案C结合前两个方案的优点，对于大金额仍需主管审批，小金额通过用户习惯等方式以及漏洞维护，对于退款的时间以及事件发生数量进行一个实时监控，判断对应风险，及时停止智能体接管。</p>
+<ol start="4">
+<li>在 1.3 节的智能旅行助手基础上，请思考如何添加以下功能（可以只描述设计思路，也可以进一步尝试代码实现）：<br>
+提示：思考如何修改</li>
+</ol>
+<ul>
+<li>Thought-Action-Observation 循环来实现这些功能。（思考-行动-观察）</li>
+<li>添加一个&quot;记忆&quot;功能，让智能体记住用户的偏好（如喜欢历史文化景点、预算范围等）</li>
+<li>当推荐的景点门票已售罄时，智能体能够自动推荐备选方案</li>
+<li>如果用户连续拒绝了 3 个推荐，智能体能够反思并调整推荐策略<br>
+answer：<br>
+Memory-&gt;用户的对话：对于历史景点的喜爱和预算范围等偏好<br>
+思考-&gt;偏爱的景点选择，预算，门票数量，时间戳数量…<br>
+行动-&gt;get_favorite(景点=“”,money=“”?,and so on),get_contrast(预算),门票数量查询，考虑预算以及喜爱的景点对方案进行修改，将此轮行动进行记忆打上时间戳。时间戳达到第三个时，重新反思。<br>
+观察-&gt;对后续偏好进行记忆刷新，观察当前时间戳数量。</li>
+</ul>
+<ol start="5">
+<li>
+<p>卡尼曼的&quot;系统 1&quot;（快速直觉）和&quot;系统 2&quot;（慢速推理）理论[2]为神经符号主义 AI 提供了很好的类比。<br>
+请首先构思一个具体的智能体的落地应用场景，然后说明场景中的：<br>
+提示：医疗诊断助手、法律咨询机器人、金融风控系统等都是常见的应用场景<br>
+哪些任务应该由&quot;系统 1&quot;处理？<br>
+哪些任务应该由&quot;系统 2&quot;处理？<br>
+这两个系统如何协同工作以达成最终目标？<br>
+answer:<br>
+法律咨询机器人，two sides:<br>
+firsr,fast:对于事件关键词提取，寻找对应的法律词条，简单轻易的匹配任务，以及一些信息收集功能，<br>
+second,slow:对于事件以及关键词的关联思考，对搜寻到的信息进行思考结合，对结果进行一个慢速推理，并延伸相关可能的方面资料和思想。<br>
+fast将结果返回到slow中进行思考推理，slow充分考虑后进行一个输出以及延伸相关可能方面让fast配合搜寻。最后在fast-slow-fast的循环中协同工作，达到最终目标。</p>
+</li>
+<li>
+<p>尽管大语言模型驱动的智能体系统展现出了强大的能力，但它们仍然存在诸多局限。请分析以下问题：</p>
+</li>
+</ol>
+<ul>
+<li>为什么智能体或智能体系统有时会产生&quot;幻觉&quot;（生成看似合理但实际错误的信息）？</li>
+<li>在 1.3 节的案例中，我们设置了最大循环次数为 5 次。如果没有这个限制，智能体可能会陷入什么问题？</li>
+<li>如何评估一个智能体的&quot;智能&quot;程度？仅使用准确率指标是否足够？</li>
+</ul>
+<p>answer：<br>
+过长的上下文，导致智能体对于关键词判断出现冗余，对信息进行误判，丢失掉关键信息。<br>
+没有这个限制，如果用户的回答不符合格式要求内容，可能会导致资源浪费以及长时间运作，降低用户体验等。<br>
+智能体对于用户的需求应该是又快又准，仅用准确率的指标是不行的，对于时间没有加以限制，更像是穷举后的结果，不符合智能体的作用和定义。</p>
+<h1>参考学习</h1>
+<p>第一题</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">case A：非智能体，他只能被动根据输入进行确定的输出</span><br><span class="line"></span><br><span class="line">case B：是智能体</span><br><span class="line">根据内部决策结构的分类：模型式，它需要根据前方障碍物体模型以及道路模型来确定避障策略</span><br><span class="line">基于时间和反应性的分类：反应式，它需要在最少的时间内做出决策</span><br><span class="line">基于知识表示的分类：神经符号，对于避障系统，它需要有大量预训练数据支撑它快速识别障碍物与道路，以便做出决策；其次，在障碍物/人与驾乘人员安全冲突的情况，需要有特定规则决定安全等级去决定避障策略</span><br><span class="line"></span><br><span class="line">case C：是智能体</span><br><span class="line">根据内部决策结构的分类：基于效用，围棋规则有明确的目的性，它需要考虑的是吃掉更多的子，且在多个方案中判断效用值高低，保证在未来数十步达到最优解</span><br><span class="line">基于时间和反应性的分类：混合式，智能体需要尽可能多的制定策略，但是考虑到围棋规则的时长要求，所以认定为混合式</span><br><span class="line">基于知识表示的分类：亚符号主义，AlphaGo是自主学习模式，在决策时并不会采用硬编码规则</span><br><span class="line"></span><br><span class="line">case D：是智能体</span><br><span class="line">根据内部决策结构的分类：基于目标，智能客服的首要目标是解决客户问题，有明确且唯一的目标，如果考虑到有多个解决方案，可能有少量基于效用的功能，但总体来说还是偏基于目标</span><br><span class="line">基于时间和反应性的分类：混合式，智能客服在解决问题的时候，既要考虑客户诉求，解决成本等问题，还客服本身业务性，需要考虑问题解决时效性，所以是混合式</span><br><span class="line">基于知识表示的分类：神经符号，首先智能客服分析问题的能力需要大量预训练数据支撑；其次在执行问题解决动作的时候，需要公司预定义规则来保证问题解决流程规范性，解决成本，合规性等问题</span><br></pre></td></tr></table></figure>
+<p>第二题</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">P：运动监测对性能度量要求高，制定运动计划要求较低</span><br><span class="line">E：体重秤、血压仪等数据采集设备，用于采集身高、体重、血压等用户身体状况；这些数据部分可见，在运动或制定规划时，大概率无法实时获取，依赖于客户上次测量或者手动输入的数据</span><br><span class="line">智能穿戴设备、摄像头等，用于采集心率、血氧、血压等用户运动实时状态；该部分数据随机性较强，客户不同运动方式，当天身体状况等实时变化</span><br><span class="line">各种天气网站服务、智能家居环境等，用于获取天气、温度、室外、室内等用户所处环境；这部分数据在短期内确定性较强，如客户在进行运动前获取，基本上已经确定且变化不大，反而在制定长期计划时这部分数据可参考性不大，可以不予考虑</span><br><span class="line">A：将提示信息输送到客户能够感知到的各种设备的能力，如声音生成，体态渲染，震动提醒等</span><br><span class="line">S：各种监测设备或者手动输入表单，需要对不同设备的输出数据进行结构化处理，最好能有前置程序处理为统一格式</span><br></pre></td></tr></table></figure>
+<p>第三题</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">方案 A（Workflow）的核心逻辑是把退款决策编码为一棵确定性的规则树：按商品类型、时间窗口、金额区间逐级分流，每个分支都有明确的处置动作。它的优势在于确定性——每一笔决策都可以精确复现和追溯，延迟极低，运营成本几乎为零，监管审计毫无障碍。但代价是僵化。规则是人写的，而真实世界的退款场景远比方框复杂：一个常年高消费的老客户买了一件101元的商品第8天申请退款，规则会毫不犹豫地拒绝，但任何有经验的客服都知道这该通过。更麻烦的是，政策一变动就得改代码或改配置，积累几版之后规则树就会膨胀成一团谁也理不清的意大利面。</span><br><span class="line"></span><br><span class="line">方案 B（Agent）走的是另一个极端：让 LLM像人一样阅读理解退款政策，综合审视用户画像、历史行为、商品状况、沟通语气，然后自主判断。这解决了 Workflow最大的短板——它能处理模糊、多因素交织、规则边缘的案例，而且政策调整只需改几行prompt，维护成本低。但引入的问题同样尖锐：LLM 的输出天生不确定，同样的输入可能得出不同的结论；幻觉风险始终存在；每一次调用都有延迟和成本；更关键的是，在消费者权益保护日趋严格的监管环境下，一个&quot;黑箱&quot;AI自主做出退款决定在合规上几乎是不可接受的。</span><br><span class="line"></span><br><span class="line">适用边界其实很清楚：订单量巨大、SKU 标准化、规则维度有限的场景（如标准化快消品），Workflow 是最优解，确定性带来的规模效应远超过它缺失的灵活性。而客单价高、边缘案例多、用户体验敏感的业务（如奢侈品、定制服务），Agent的灵活性价值就会超过它的不确定成本。但我作为负责人不会二选一：真实业务中绝大多数退款请求都落在确定性区间（金额小、时间短、商品标准），只有少数流入模糊地带。方案 C 的思路是按梯度分配信任—— Workflow 吃掉 80%的确定性案件，秒级处理且零模型成本；Workflow 判断不了或置信度不足的，交给 Agent做综合推理并输出结构化建议，由客服一键确认；Agent自己也判断不了的高风险案件（大额、定制、争议），原封不动升级给人工主管。Agent在其中扮演的不是&quot;决策者&quot;而是&quot;辅助决策引擎&quot;，人始终是最终兜底。这套三层架构在确定性、灵活性、合规性和成本四个维度上取得了可落地的平衡，也是目前业内主流的实践方向。</span><br></pre></td></tr></table></figure>
+<p>第四题</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">记忆功能的本质是在 Observation(观察)之后加一个异步的偏好沉淀步骤。每次用户给出反馈，Observation解析器不光提取表面信息（接受/拒绝），还并行跑一个轻量提取器把结构化偏好抽出来——&quot;喜欢历史类&quot;&quot;预算偏紧&quot;&quot;排斥爬山&quot;—— 写入用户画像库。这些偏好不是扔进历史列表等人翻，而是在下一轮 Thought (思考)构造时自动检索 Top-K 相关内容，嵌进 prompt 前缀。这样Agent的每一次推理都天然带着用户画像，不必依赖模型自身去记住几十轮之前的对话细节。写入异步、检索同步，主循环延迟不受影响。</span><br><span class="line"></span><br><span class="line">售罄备选的核心是在 Observation 环节加一层结果校验拦截。调用票务 API返回后，解析器先检查返回码——如果门票可购，正常走展示流程；如果标记为售罄，不把失败结果抛给用户，而是内部触发一条新Thought，约束条件从&quot;查 A 景点票务&quot;变成&quot;A 景点售罄，根据用户偏好找与 A 同质的替代景点&quot;，再把动作路由到备选查询。整个备选链路对用户透明，用户只看到最终推荐结果，感知不到中间的失败重试。设置最多两次内部跳转防死循环。</span><br><span class="line"></span><br><span class="line">连续拒绝反思是三个扩展里最&quot;元&quot;的一个。在 Observation层维护一个拒绝计数器，用户说&quot;不要&quot;就递增，说&quot;好&quot;就归零。当计数器触到阈值（3 次），不再接着推下一条，而是触发一次反思Thought——把这三轮完整的思考-行动-观察历史连同用户画像一起丢进去，追问模型：&quot;到底哪里偏了？是预算预判错了？还是用户今天根本没心情逛景点？&quot;反思的输出不是具体推荐，而是一组修正后的策略参数（比如压低预算权重、调高室内活动偏好），用这些参数覆盖当前策略，再重启普通推荐循环。这个设计本质上给了 Agent一个&quot;跳出局部最优&quot;的能力，不至于在错误的推荐方向上反复碰壁。三个功能分属三个嵌入点——Though前的记忆注入、Observation后的售罄拦截、Observation 后的拒绝反思——彼此独立，叠加后形成一个有记忆、有韧性、有自省能力TAO循环，骨架不改，只是多了几条旁路判断。</span><br></pre></td></tr></table></figure>
+<p>第五题</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">法律咨询机器人：系统 1 与系统 2 的协同设计</span><br><span class="line"></span><br><span class="line">系统 1 负责法律场景中的高频模式匹配。法律咨询的入口往往是自然语言描述的生活事件，系统 1的第一项工作就是快速归类——从用户叙述中抓取关键词和句式特征，判断这属于劳动纠纷、婚姻继承、合同违约、交通事故还是刑事问题，几秒内完成领域分流(common interpretations - Spotting statute of limitations issues from dates mentioned - Identifying jurisdiction)。分流之后，凡是能在法条和司法解释中直接定位到明确规则的情形，都由系统 1给出一锤定音式的回答：比如&quot;拖欠工资，劳动合同法第 85 条，赔偿金为应付金额的 50%–100%&quot;&quot;离婚冷静期 30天，从申请登记之日起算&quot;&quot;民间借贷利率超过 LPR 四倍的部分不予支持&quot;。另外，诉讼时效检查也是系统 1的天然任务——从日期信息中计算时间差，过期就立刻提示风险，这一环必须快且不漏。系统 1本质上是在调用一个经过良好整理的&quot;法律常识库&quot;，把占咨询量七八成的标准化问题用最低延迟消解掉。</span><br><span class="line"></span><br><span class="line">系统 2 负责需要深度推理和权衡的复杂案件。触发条件很明确：当案件同时涉及多个法律领域（离婚+股权分割+跨境财产）、当不同法院对同类问题存在冲突判决、当法律条文本身存在模糊表述需要动用文义解释→体系解释→目的解释的递进推理链、或者用户的事实叙述本身碎片化需要在追问中逐步补全。系统 2的工作方式不再是一问一答，而是一条显式的推理流水线——先从用户散乱的表述中构建结构化案件要素表，然后检索相关法条、司法有一个可追溯的论证链条：依据什么条款、参考了什么判例、为什么这个论点优于相反论点。这个过程耗时较长（几十秒到几分钟），但它提供的是法律推理最核心的价值——可解释性和可反驳性，而非一句无法追问的黑盒答案。</span><br><span class="line"></span><br><span class="line">协同机制：系统 1 作为前端常驻，完成分类、标准问答和风险标记；当系统 1 输出置信度跌破阈值、或其分类落入预设的&quot;复杂案件类型&quot;列表（如刑民交叉、行政附带民事），案件连同已提取的结构化要素自动升级到系统 2。系统 2 产出的深度分析报告一方面展示给用户（可能还需要律师二次审核），另一方面其推理路径中的关键法律逻辑被抽象为新的模式规则，回灌进系统 1的匹配库——今天系 2 花一刻钟厘清的某个合同条款争议，其结论和逻辑签名明天就可以让系统 1在秒级复用。两套系统之间还有一个重要分工：系统 1 面向用户做交互和快速应答，系统 2面向律师做人机协同的深度分析。这个双速架构同时应对了法律咨询的两大压力——日常标准化咨询的量（靠系 1 扛）和疑难案件的质（靠系统 2 撑），且慢系统持续反哺快系统，形成法律知识资产的持续沉淀。</span><br></pre></td></tr></table></figure>
+<p>第六题</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">以下内容涵盖幻觉的成因（统计相关性、工具链放大、上下文稀释）、无限循环的三重风险（死循环、发散偏移、上下文溢出），以及智能体智能程度的多维评估（效率、泛化、鲁棒性、可解释性、校准）</span><br><span class="line">幻觉的根源是多层的。最底层是模型自身的训练机制——语言模型学的是统计相关性而非事实真值，它在给定上文后预测最可能的下一个 token，这个&quot;最可能&quot;由训练语料的分布决定，而非由外部事实校验决定。所以当它被问到一个训练数据中覆盖稀疏的问题，或者被要求回忆一个精确数字时，模型不会老实说&quot;我不知道&quot;，它会顺着语言的惯性编织出一个读起来通顺、格式合理、但在事实维度上不可靠的回答。这在纯对话场景下已经够头疼了，放到智能体场景下问题会进一步放大：智能体不仅自己生成文本，还可以调用外部工具、读取观察结果、将结果注入下一轮思考。如果观察结果本身不干净（网页检索返回了错误信息、API 返回了格式异常的数据），或者 Agent 在 Thought 环节错误解读了观察结果的含义，这个错误会被带入下一轮 Action 形成级联放大导致：一步错，步步错。再加上智能体在长链条推理中需要在有限的上下文窗口里管理越来越多的信息，当信息密度超出有效注意力范围时，模型倾向于&quot;脑补&quot;缺失的细节来维持叙述连贯性，幻觉几乎难以避免。</span><br><span class="line"></span><br><span class="line">最大循环次数本质上是一道熔断器。没有它，智能体面临三重风险。第一是无限循环——如果任务本身没有明确终止条件，或者 Agent 在某一轮产生了与上一轮语义等价但形式不同的 Thought-Action 对，它可能在一个闭合环路里反复打转，用相同的策略反复查询相同的信息源，消耗 API 预算和计算资源却不产生任何增量价值。第二是发散偏移——随着链条拉长，每一轮推理都在前一轮输出的基础上叠加微小偏差，到十几轮之后 Agent 可能完全偏离初始任务目标，开始探索无关的方向却浑然不觉。第三是上下文溢出——推理历史持续堆叠最终超出模型上下文窗口，早期关键信息被截断，Agent 在信息不完整的状态下继续决策，不仅质量崩盘，还可能输出格式损坏的内容导致下游解析器崩溃。五轮限制是一个工程上的务实取舍：对大多数简单到中等复杂度的任务，五轮足够完成；对少数需要更深探索的任务，与其让 Agent 无限跑下去硬撑，不如在边界处触发异常处理（升级给人、降级为简化方案、或分拆为多个子任务分别执行），反而更可靠。</span><br><span class="line"></span><br><span class="line">评估一个智能体的&quot;智能&quot;程度，准确率只是拼图的一块，远非全景。准确率（以及精确率、召回率）衡量的是单次决策的正确性，但智能体与单次推理的模型不同——它是在一个环境中持续行动的。你还要问：达成目标的过程中它绕了多少弯路（效率）？面对从未见过的工具或环境变化它能不能自适应（泛化）？它的失败是可预测的、可恢复的，还是灾难性的（鲁棒性）？它能向用户解释为什么这么做（可解释性）吗？它是否知道自己不知道——即在不确信的时候坦率表达而非强撑（校准）？这些维度放在一起，才构成对一个智能体的立体评价。一个极端例子：Agent 的正确率 100%，但每次决策前反复调用同一个工具十次才敢下结论——这叫准确但不智能。另一个极端：Agent 对难题总能找到变通方案，但十个回答里有三个是编的——这叫灵活但不诚实。目前没有一个单一指标能捕获&quot;智能&quot;，通行的做法是构建多维评估矩阵，按场景分配权重——在医疗诊断中校准和可解释性可能比效率更重要，在实时交易中延迟和鲁棒性则压倒一切。评估维度的选择本身，就是对应用场景优先级的映射。</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://gulvlv.github.io">顾绿绿</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://gulvlv.github.io/2026/05/29/learning_hello-agent/">https://gulvlv.github.io/2026/05/29/learning_hello-agent/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://gulvlv.github.io" target="_blank">顾绿绿のblog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Agent/">Agent</a></div><div class="post-share"><div class="social-share" data-image="/img/meihua.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/10/17/learningFHE/" title="Learning Notes — Introduction to Modern Cryptography (Katz, 2020)"><img class="cover" src="/img/meihua.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Learning Notes — Introduction to Modern Cryptography (Katz, 2020)</div></div><div class="info-2"><div class="info-item-1">just for leraning from page 328 to 360,随书笔记，写这个文档是为了激励自己学习相关的文献，争取早日学会FHE相关内容。</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">顾绿绿</div><div class="author-info-description">心想事成</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Gulvlv"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Gulvlv" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Agent初认知</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E4%BD%93%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.</span> <span class="toc-text">智能体分类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">智能体构成及运行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E4%BD%93%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-number">2.1.</span> <span class="toc-text">智能体运行机制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">完成一个简单的智能体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%97%E4%BA%AC%E8%BE%93%E5%87%BA"><span class="toc-number">3.0.1.</span> <span class="toc-text">北京输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%AD%E5%B7%9E%E8%BE%93%E5%87%BA"><span class="toc-number">3.0.2.</span> <span class="toc-text">杭州输出</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">chapter1 小节</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">chapter1 习题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">参考学习</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/05/29/learning_hello-agent/" title="Learning Notes — Hello-Agents"><img src="/img/meihua.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learning Notes — Hello-Agents"/></a><div class="content"><a class="title" href="/2026/05/29/learning_hello-agent/" title="Learning Notes — Hello-Agents">Learning Notes — Hello-Agents</a><time datetime="2026-05-29T09:31:28.000Z" title="发表于 2026-05-29 17:31:28">2026-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/10/17/learningFHE/" title="Learning Notes — Introduction to Modern Cryptography (Katz, 2020)"><img src="/img/meihua.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learning Notes — Introduction to Modern Cryptography (Katz, 2020)"/></a><div class="content"><a class="title" href="/2025/10/17/learningFHE/" title="Learning Notes — Introduction to Modern Cryptography (Katz, 2020)">Learning Notes — Introduction to Modern Cryptography (Katz, 2020)</a><time datetime="2025-10-17T01:27:00.000Z" title="发表于 2025-10-17 09:27:00">2025-10-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/02/Hexo%E7%BE%8E%E5%8C%96--Butterfly%E4%B8%BB%E9%A2%98%EF%BC%9A%E5%8A%A0%E5%85%A5clustrmaps%E8%AE%BF%E5%AE%A2%E5%9C%B0%E5%9B%BE/" title="Hexo美化--Butterfly主题：加入clustrmaps访客地图"><img src="/img/meihua.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo美化--Butterfly主题：加入clustrmaps访客地图"/></a><div class="content"><a class="title" href="/2024/12/02/Hexo%E7%BE%8E%E5%8C%96--Butterfly%E4%B8%BB%E9%A2%98%EF%BC%9A%E5%8A%A0%E5%85%A5clustrmaps%E8%AE%BF%E5%AE%A2%E5%9C%B0%E5%9B%BE/" title="Hexo美化--Butterfly主题：加入clustrmaps访客地图">Hexo美化--Butterfly主题：加入clustrmaps访客地图</a><time datetime="2024-12-02T09:53:03.000Z" title="发表于 2024-12-02 17:53:03">2024-12-02</time></div></div></div></div><div class="card-widget card-map"><div class="card-content"><div class="item-headline"><i class="fa fa-globe-asia" aria-hidden="true"></i><span>访客地图</span></div><script id="clstr_globe" type="text/javascript" defer="defer" src="//clustrmaps.com/globe.js?d=llb0qg75G2-N8UWhC41J_oOtPMIYst1wQrAnvncbVjU"></script></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2026 By 顾绿绿</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的博客,一起探索无限的可能</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
